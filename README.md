@@ -56,6 +56,16 @@
 - 原始元数据永远是第一候选；规则只负责追加清洗后的候选，不会覆盖播放器原始值。
 - 个人规则可以只在本地生效；提交到市场后由管理员审核，通过后其他用户可一键下载启用。
 
+## Wiki 文档
+
+Wiki 正文源文件维护在本仓库的 [`wiki/`](wiki/) 目录（`Home.md`、`_Sidebar.md` 及各专题页），发布时同步到 GitHub Wiki：
+
+```powershell
+node tools/publish-wiki.mjs
+```
+
+首次使用前需在 Wiki 网页端点一次「Create the first page」（GitHub 不允许通过 API 创建 Wiki 仓库）：https://github.com/zuo-qirun/lyrics-companion-match-rules/wiki/_new
+
 ## 目录结构
 
 ~~~
@@ -64,6 +74,8 @@ CONTRIBUTING.md           贡献与审核说明
 examples/                 可直接导入应用的示例规则包
 schema/rule-pack.schema.json  规则包 JSON Schema
 tools/validate-rules.mjs  示例校验脚本（CI 使用）
+tools/publish-wiki.mjs    将 wiki/ 同步发布到 GitHub Wiki
+wiki/                     Wiki 正文源文件（Home、_Sidebar 及各专题页）
 ~~~
 
 ## 许可证
