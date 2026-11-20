@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "id": "echo.split-artist-title",
+  "name": "回声：拆分歌手与歌名",
+  "version": 1,
+  "author": "lyrics-companion",
+  "description": "回声音乐把「歌手 - 歌名」塞进标题、把文件夹名当歌手；拆开并去掉末尾数字序号。",
+  "minVersionCode": 0,
+  "scope": {
+    "packages": ["com.echo.music"],
+    "sources": []
+  },
+  "rules": [
+    {
+      "id": "split-artist-title",
+      "when": [
+        {"field": "title", "op": "regex", "value": "^(.{1,40})\\s*[-–—]\\s*(.{1,80})$"},
+        {"field": "artist", "op": "equalsAny", "value": ["车载音乐", "车载", "未知歌手", "群星"]}
+      ],
+      "then": [
+        {"type": "extract", "pattern": "^(.{1,40})\\s*[-–—]\\s*(.{1,80})$",
+         "targets": {"artist": 1, "title": 2}}
+      ]
+    },
+    {
+      "id": "strip-numeric-suffix",
+      "when": [
+        {"field": "title", "op": "regex", "value": "[（(]\\d{1,3}[)）]\\s*$"}
+      ],
+      "then": [
+        {"type": "stripSuffix"}
+      ]
+    }
+  ]
+}

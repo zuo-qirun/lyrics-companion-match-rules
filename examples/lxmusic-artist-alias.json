@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "id": "lxmusic.artist-alias",
+  "name": "LX Music：艺名转本名",
+  "version": 1,
+  "author": "lyrics-companion",
+  "description": "把 A-Lin、G.E.M. 等艺名映射到词库常用的本名，歌手串按 / 和逗号分段替换。",
+  "minVersionCode": 0,
+  "scope": {
+    "packages": ["cn.tinneden.music"],
+    "sources": []
+  },
+  "rules": [
+    {
+      "id": "alias-artist",
+      "when": [
+        {"field": "artist", "op": "regex", "value": "A-Lin|Alin|G\\.E\\.M\\.|GEM|黄霄雲"}
+      ],
+      "then": [
+        {"type": "aliasArtist", "map": {
+          "A-Lin": "黄丽玲",
+          "Alin": "黄丽玲",
+          "G.E.M.": "邓紫棋",
+          "GEM": "邓紫棋",
+          "黄霄雲": "黄霄云"
+        }}
+      ]
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "id": "dftc.split-when-artist-empty",
+  "name": "DFTC：歌手为空时拆分标题",
+  "version": 1,
+  "author": "lyrics-companion",
+  "description": "DFTC 与部分通知栏只给标题「歌手 - 歌名」，歌手为空；拆成 artist/title 再搜。",
+  "minVersionCode": 0,
+  "scope": {
+    "packages": [],
+    "sources": []
+  },
+  "rules": [
+    {
+      "id": "split-when-empty",
+      "when": [
+        {"field": "artist", "op": "empty"},
+        {"field": "title", "op": "regex", "value": "^(.{1,40})\\s*[-–—]\\s*(.{1,80})$"}
+      ],
+      "then": [
+        {"type": "extract", "pattern": "^(.{1,40})\\s*[-–—]\\s*(.{1,80})$",
+         "targets": {"artist": 1, "title": 2}}
+      ]
+    }
+  ]
+}

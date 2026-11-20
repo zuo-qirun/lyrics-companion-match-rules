@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "id": "byd.numeric-suffix",
+  "name": "比亚迪：去掉标题末尾序号",
+  "version": 1,
+  "author": "lyrics-companion",
+  "description": "标题形如「单身情歌（01）」，U 盘里的 LRC 名为「单身情歌.lrc」；只去掉末尾 1–3 位数字括号。",
+  "minVersionCode": 0,
+  "scope": {
+    "packages": [],
+    "sources": []
+  },
+  "rules": [
+    {
+      "id": "strip-index",
+      "when": [
+        {"field": "title", "op": "regex", "value": "[（(【\\[]\\s*\\d{1,3}\\s*[)）】\\]]\\s*$"}
+      ],
+      "then": [
+        {"type": "stripSuffix"}
+      ]
+    }
+  ]
+}
